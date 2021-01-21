@@ -18,6 +18,8 @@ Demultiplex reads using barcode information so that each read header is annotate
 
 Tools are all located on NAS, `BradyLabComputerResources/Bioinformatics/Tools/`
 
+This script automatically activates the necessary conda environment.
+
 ```bash
 # Supply all parameters
 amplicon_analysis/demux_wrapper/demultiplex.sh -f forward.fastq.gz -r reverse.fastq.gz -b barcode_file.txt -o log_file -l barcode_length -m max_mismatches
