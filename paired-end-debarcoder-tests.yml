@@ -1,0 +1,6 @@
+
+- doc: test generated from example command
+  job: paired-end-debarcoder-job.yml
+  outputs:
+      log_files:
+          checksum: sha256$77fa72c420fe3168d343d2afb3b591246e622210668eb8ad263c46a97c8dd9a1

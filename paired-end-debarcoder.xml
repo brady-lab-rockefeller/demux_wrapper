@@ -1,0 +1,49 @@
+﻿<tool id="paired-end-debarcoder" name="Demultiplexing of paired end amplicon sequences" version="0.1.0" python_template_version="3.5">
+    <requirements>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        bash '$__tool_directory__/demultiplex.sh' -f '$forward_fastq' -r '$reverse_fastq' -b '$barcode_file' \ ##-o '${barcode_file.element_identifier.replace("MappingFile_","").replace(".txt",".log")}' \
+        #if str($settings.advanced) == "advanced":
+        -l $barcodelength -m $max_mismatches
+        #end if
+    ]]></command>
+    <inputs>
+        <param type="data" name="forward_fastq" label="Forward reads" format="fastq.gz" />
+        <param type="data" name="reverse_fastq" label="Reverse reads" format="fastq.gz" />
+        <param type="data" name="barcode_file" label="Barcode (Mapping) file" format="txt" />
+        <conditional name="settings">
+            <param name="advanced" type="select" label="Specify advanced parameters">
+                <option value="simple" selected="true">No, use program defaults.</option>
+                <option value="advanced">Yes, see full parameter list.</option>
+            </param>
+            <when value="simple">
+            </when>
+            <when value="advanced">
+                <param type="integer" name="barcodelength" label="Barcode length" optional="true" value="16" min="10" max="50" />
+                <param type="integer" name="max_mismatches" label="Maximum number of mismatches" optional="true" value="0" min="0" max="100" />
+            </when>
+        </conditional>
+    </inputs>
+    <outputs>
+        <collection name="demultiplexed_files" label="Demultiplexed and debarcoded FASTQ files" type="list" >
+            <discover_datasets pattern="(?P&lt;designation&gt;.+)\.fq" format="fastq" directory="fastqs" visible="true" /> 
+        </collection>
+        <data name="log_file" label="Demultiplexing log" format="txt" from_work_dir="demux.log" >
+        </data>
+    </outputs>
+    <tests>
+        <test>
+            <param name="forward_fastq" value="NYParks_sample10000_R1_001.fastq.gz" />
+            <param name="reverse_fastq" value="NYParks_sample10000_R2_001.fastq.gz" />
+            <param name="barcode_file" value="MappingFile_AD1.txt" />
+            <!-- <param name="advanced" value="advanced"> -->
+            <param name="barcodelength" value="16" />
+            <output_collection name="demultiplexed_files" type="list" count="640" >
+            </output_collection>
+            <output name="log_file" ftype="txt" file="demux.log" />
+        </test>
+    </tests>
+    <help><![CDATA[
+        TODO: Fill in help.
+    ]]></help>
+</tool>

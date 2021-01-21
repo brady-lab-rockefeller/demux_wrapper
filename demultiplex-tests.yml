@@ -1,0 +1,8 @@
+
+- doc: test demultiplexing with test function
+job: test-data/demultiplex-job-test.yml
+  outputs:
+      demux_fastqs:
+        glob: "fastqs/*.fq"
+      log_files:
+        glob: "*.log"

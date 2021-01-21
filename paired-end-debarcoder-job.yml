@@ -1,0 +1,15 @@
+forward_fastq:
+  class: File
+  path: test-data/NYParks_sample10000_R1_001.fastq.gz
+reverse_fastq:
+  class: File
+  path: test-data/NYParks_sample10000_R2_001.fastq.gz
+barcodefile:
+  class: File
+  path: test-data/MappingFile_AD1.txt
+log_file: demux.log
+barcodelength: 16
+#test_mode: true
+#max_mismatches: 0
+#outdirectory: fastqs
+#logfile: logfile.log

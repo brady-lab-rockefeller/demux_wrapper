@@ -1,0 +1,8 @@
+
+  forward_reads: /nasdata/BradyLabComputerResources/BradyLabSequencingData/AmpliconData/20150715_NYC_Soils/*_R1_001.fastq.gz
+  reverse_reads: /nasdata/BradyLabComputerResources/BradyLabSequencingData/AmpliconData/20150715_NYC_Soils/*_R2_001.fastq.gz
+  barcodefile: /nasdata/BradyLabComputerResources/BradyLabSequencingData/AmpliconData/20150715_NYC_Soils
+  barcodelength: 16
+  max_mismatches: 0
+  outdirectory: fastqs
+  logfile: logfile.log
